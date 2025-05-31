@@ -8,17 +8,12 @@ class ArrayList:
     def append(self, element):
         self.data.append(element)
 
-	def insert(self, element, index):
+    def insert(self, element, index):
         if index < 0 or index > len(self.data):
             raise IndexError("Invalid index")
         self.data.insert(index, element)
 
-    def get(self, index):
-        if index < 0 or index >= len(self.data):
-            raise IndexError("Invalid index")
-        return self.data[index]
-
-	def delete(self, index):
+    def delete(self, index):
         if index < 0 or index >= len(self.data):
             raise IndexError("Invalid index")
         return self.data.pop(index)
@@ -26,10 +21,12 @@ class ArrayList:
     def deleteAll(self, element):
         self.data = [x for x in self.data if x != element]
 
-    def clear(self):
-        self.data.clear()
+    def get(self, index):
+        if index < 0 or index >= len(self.data):
+            raise IndexError("Invalid index")
+        return self.data[index]
 
-	def clone(self):
+    def clone(self):
         new_list = ArrayList()
         new_list.data = self.data.copy()
         return new_list
@@ -48,6 +45,9 @@ class ArrayList:
             if self.data[i] == element:
                 return i
         return -1
+
+    def clear(self):
+        self.data.clear()
 
     def extend(self, other):
         self.data += other.data.copy()
