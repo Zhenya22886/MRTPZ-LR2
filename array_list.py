@@ -17,3 +17,14 @@ class ArrayList:
         if index < 0 or index >= len(self.data):
             raise IndexError("Invalid index")
         return self.data[index]
+
+	def delete(self, index):
+        if index < 0 or index >= len(self.data):
+            raise IndexError("Invalid index")
+        return self.data.pop(index)
+
+    def deleteAll(self, element):
+        self.data = [x for x in self.data if x != element]
+
+    def clear(self):
+        self.data.clear()
