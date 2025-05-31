@@ -36,3 +36,14 @@ if __name__ == '__main__':
         self.assertEqual(lst.length(), 1)
         with self.assertRaises(IndexError):
             lst.delete(5)
+
+    def test_delete_all_and_clear(self):
+        lst = ArrayList()
+        lst.append('a')
+        lst.append('b')
+        lst.append('a')
+        lst.deleteAll('a')
+        self.assertEqual(lst.length(), 1)
+        self.assertEqual(lst.get(0), 'b')
+        lst.clear()
+        self.assertEqual(lst.length(), 0)
