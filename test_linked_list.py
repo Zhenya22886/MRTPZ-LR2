@@ -26,9 +26,9 @@ if __name__ == '__main__':
         lst.append('b')
         lst.append('d')
 
-        lst.insert('a', 0)  # вставка на початок
-        lst.insert('c', 2)  # вставка в середину
-        lst.insert('e', 4)  # вставка в кінець
+        lst.insert('a', 0)  
+        lst.insert('c', 2)  
+        lst.insert('e', 4)  
 
         self.assertEqual(lst.length(), 5)
         self.assertEqual(lst.get(0), 'a')
@@ -49,16 +49,16 @@ if __name__ == '__main__':
         lst.append('c')
         lst.append('d')
 
-        deleted = lst.delete(0)  # видаляємо з голови
+        deleted = lst.delete(0)  
         self.assertEqual(deleted, 'a')
         self.assertEqual(lst.length(), 3)
         self.assertEqual(lst.get(0), 'b')
 
-        deleted = lst.delete(2)  # видаляємо з хвоста
+        deleted = lst.delete(2)  
         self.assertEqual(deleted, 'd')
         self.assertEqual(lst.length(), 2)
 
-        deleted = lst.delete(1)  # видаляємо з середини
+        deleted = lst.delete(1)  
         self.assertEqual(deleted, 'c')
         self.assertEqual(lst.length(), 1)
         self.assertEqual(lst.get(0), 'b')
@@ -83,9 +83,57 @@ if __name__ == '__main__':
         self.assertEqual(lst.get(1), 'z')
         self.assertEqual(lst.findFirst('x'), -1)
 
-        # Тепер очищуємо список повністю
+        
         lst.clear()
         self.assertEqual(lst.length(), 0)
 
         with self.assertRaises(IndexError):
             lst.get(0)
+
+
+def test_clone_and_reverse(self):
+        lst = DoublyLinkedList()
+        for ch in ['a', 'b', 'c']:
+            lst.append(ch)
+
+        clone = lst.clone()
+        self.assertEqual(clone.length(), 3)
+        self.assertEqual(clone.get(0), 'a')
+        self.assertEqual(clone.get(2), 'c')
+
+        
+        clone.append('d')
+        self.assertEqual(clone.length(), 4)
+        self.assertEqual(lst.length(), 3)
+
+        
+        lst.reverse()
+        self.assertEqual(lst.get(0), 'c')
+        self.assertEqual(lst.get(1), 'b')
+        self.assertEqual(lst.get(2), 'a')
+
+    def test_findFirst_and_findLast(self):
+        lst = DoublyLinkedList()
+        lst.append('x')
+        lst.append('y')
+        lst.append('x')
+        lst.append('z')
+        lst.append('x')
+
+        self.assertEqual(lst.findFirst('x'), 0)
+        self.assertEqual(lst.findLast('x'), 4)
+        self.assertEqual(lst.findFirst('q'), -1)
+
+    def test_extend(self):
+        lst1 = DoublyLinkedList()
+        lst2 = DoublyLinkedList()
+        lst1.append('a')
+        lst2.append('b')
+        lst2.append('c')
+
+        lst1.extend(lst2)
+
+        self.assertEqual(lst1.length(), 3)
+        self.assertEqual(lst1.get(1), 'b')
+        self.assertEqual(lst1.get(2), 'c')
+        self.assertEqual(lst2.length(), 2)
