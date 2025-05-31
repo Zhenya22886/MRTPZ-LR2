@@ -109,4 +109,34 @@ class DoublyLinkedList:
         self.tail = None
         self._length = 0
 
+    def clone(self):
+        cloned = DoublyLinkedList()
+        current = self.head
+        while current:
+            cloned.append(current.data)
+            current = current.next
+        return cloned
 
+    def reverse(self):
+        current = self.head
+        prev = None
+        self.tail = self.head
+
+        while current:
+            next_node = current.next
+            current.next = prev
+            current.prev = next_node
+            prev = current
+            current = next_node
+
+        self.head = prev
+
+    def findFirst(self, element):
+        current = self.head
+        index = 0
+        while current:
+            if current.data == element:
+                return index
+            current = current.next
+            index += 1
+        return -1
