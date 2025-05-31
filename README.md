@@ -34,6 +34,12 @@ Python 3.11+ (можна 3.13 локально)
 ```
 https://github.com/Zhenya22886/MRTPZ-LR2/actions/runs/15366122103
 ```
+
+###  Демонстрація роботи
+
+```bash
+python demo.py
+```
 ###  Запуск тестів
 
 ```bash
