@@ -41,7 +41,7 @@ if __name__ == '__main__':
             lst.insert('x', -1)
         with self.assertRaises(IndexError):
             lst.insert('x', 10)
-			
+
     def test_delete_head_tail_middle_and_invalid(self):
         lst = DoublyLinkedList()
         lst.append('a')
@@ -68,3 +68,24 @@ if __name__ == '__main__':
 
         with self.assertRaises(IndexError):
             lst.delete(10)
+
+    def test_deleteAll_and_clear(self):
+        lst = DoublyLinkedList()
+        lst.append('x')
+        lst.append('y')
+        lst.append('x')
+        lst.append('z')
+        lst.append('x')
+
+        lst.deleteAll('x')
+        self.assertEqual(lst.length(), 2)
+        self.assertEqual(lst.get(0), 'y')
+        self.assertEqual(lst.get(1), 'z')
+        self.assertEqual(lst.findFirst('x'), -1)
+
+        # Тепер очищуємо список повністю
+        lst.clear()
+        self.assertEqual(lst.length(), 0)
+
+        with self.assertRaises(IndexError):
+            lst.get(0)
