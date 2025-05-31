@@ -28,3 +28,26 @@ class ArrayList:
 
     def clear(self):
         self.data.clear()
+
+	def clone(self):
+        new_list = ArrayList()
+        new_list.data = self.data.copy()
+        return new_list
+
+    def reverse(self):
+        self.data.reverse()
+
+    def findFirst(self, element):
+        try:
+            return self.data.index(element)
+        except ValueError:
+            return -1
+
+    def findLast(self, element):
+        for i in range(len(self.data) - 1, -1, -1):
+            if self.data[i] == element:
+                return i
+        return -1
+
+    def extend(self, other):
+        self.data += other.data.copy()
