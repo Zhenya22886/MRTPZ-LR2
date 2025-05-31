@@ -91,7 +91,7 @@ if __name__ == '__main__':
             lst.get(0)
 
 
-def test_clone_and_reverse(self):
+    def test_clone_and_reverse(self):
         lst = DoublyLinkedList()
         for ch in ['a', 'b', 'c']:
             lst.append(ch)
