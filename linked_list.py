@@ -60,3 +60,31 @@ class DoublyLinkedList:
 
         self._length += 1
 
+    def delete(self, index):
+        if index < 0 or index >= self._length:
+            raise IndexError("Invalid index")
+
+        if index == 0:
+            removed_data = self.head.data
+            self.head = self.head.next
+            if self.head:
+                self.head.prev = None
+            if self._length == 1:
+                self.tail = None
+        elif index == self._length - 1:
+            removed_data = self.tail.data
+            self.tail = self.tail.prev
+            if self.tail:
+                self.tail.next = None
+        else:
+            current = self.head
+            for _ in range(index):
+                current = current.next
+            removed_data = current.data
+            current.prev.next = current.next
+            current.next.prev = current.prev
+
+        self._length -= 1
+        return removed_data
+
+
