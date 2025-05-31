@@ -41,3 +41,30 @@ if __name__ == '__main__':
             lst.insert('x', -1)
         with self.assertRaises(IndexError):
             lst.insert('x', 10)
+			
+    def test_delete_head_tail_middle_and_invalid(self):
+        lst = DoublyLinkedList()
+        lst.append('a')
+        lst.append('b')
+        lst.append('c')
+        lst.append('d')
+
+        deleted = lst.delete(0)  # видаляємо з голови
+        self.assertEqual(deleted, 'a')
+        self.assertEqual(lst.length(), 3)
+        self.assertEqual(lst.get(0), 'b')
+
+        deleted = lst.delete(2)  # видаляємо з хвоста
+        self.assertEqual(deleted, 'd')
+        self.assertEqual(lst.length(), 2)
+
+        deleted = lst.delete(1)  # видаляємо з середини
+        self.assertEqual(deleted, 'c')
+        self.assertEqual(lst.length(), 1)
+        self.assertEqual(lst.get(0), 'b')
+
+        with self.assertRaises(IndexError):
+            lst.delete(-1)
+
+        with self.assertRaises(IndexError):
+            lst.delete(10)
