@@ -140,3 +140,19 @@ class DoublyLinkedList:
             current = current.next
             index += 1
         return -1
+
+    def findLast(self, element):
+        current = self.tail
+        index = self._length - 1
+        while current:
+            if current.data == element:
+                return index
+            current = current.prev
+            index -= 1
+        return -1
+
+    def extend(self, other):
+        current = other.head
+        while current:
+            self.append(current.data)
+            current = current.next
