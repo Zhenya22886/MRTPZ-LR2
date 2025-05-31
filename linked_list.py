@@ -87,4 +87,26 @@ class DoublyLinkedList:
         self._length -= 1
         return removed_data
 
+    def deleteAll(self, element):
+        current = self.head
+        while current:
+            if current.data == element:
+                if current.prev:
+                    current.prev.next = current.next
+                else:
+                    self.head = current.next
+
+                if current.next:
+                    current.next.prev = current.prev
+                else:
+                    self.tail = current.prev
+
+                self._length -= 1
+            current = current.next
+
+    def clear(self):
+        self.head = None
+        self.tail = None
+        self._length = 0
+
 
