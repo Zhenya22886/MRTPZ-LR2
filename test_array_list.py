@@ -47,3 +47,34 @@ if __name__ == '__main__':
         self.assertEqual(lst.get(0), 'b')
         lst.clear()
         self.assertEqual(lst.length(), 0)
+
+    def test_clone_and_reverse(self):
+        lst = ArrayList()
+        lst.append('x')
+        lst.append('y')
+        clone = lst.clone()
+        self.assertEqual(clone.get(0), 'x')
+        self.assertEqual(clone.get(1), 'y')
+        lst.reverse()
+        self.assertEqual(lst.get(0), 'y')
+        self.assertEqual(lst.get(1), 'x')
+
+    def test_findFirst_and_findLast(self):
+        lst = ArrayList()
+        lst.append('a')
+        lst.append('b')
+        lst.append('a')
+        self.assertEqual(lst.findFirst('a'), 0)
+        self.assertEqual(lst.findLast('a'), 2)
+        self.assertEqual(lst.findFirst('z'), -1)
+
+    def test_extend(self):
+        lst1 = ArrayList()
+        lst2 = ArrayList()
+        lst1.append('1')
+        lst2.append('2')
+        lst2.append('3')
+        lst1.extend(lst2)
+        self.assertEqual(lst1.length(), 3)
+        self.assertEqual(lst1.get(1), '2')
+        self.assertEqual(lst1.get(2), '3')
